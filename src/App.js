@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
-import CatFacts from "./Components/CatFacts";
+import Properties from "./Components/Properties";
 import Weather from "./Components/Weather";
 import Loginout from "./Components/Login-out";
 import Home from "./Components/Home";
@@ -22,7 +22,7 @@ function Header({isLoggedIn, loginMsg}) {
     <div>
       <ul className="header">
         <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-        <li><NavLink activeClassName="active" to="/catfacts">Cat Facts</NavLink></li>
+        <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
         <li><NavLink activeClassName="active" to="/kanyerest">Kanye Rest</NavLink></li>
 
         {isLoggedIn && (
@@ -59,8 +59,8 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/catfacts">
-            <CatFacts />
+          <Route path="/properties">
+            <Properties />
           </Route>
           <Route path="/kanyerest">
             <KanyeRest />
