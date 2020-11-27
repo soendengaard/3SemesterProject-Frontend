@@ -1,4 +1,4 @@
-import PropertyFacade from "../Rest/PropertyFacade"
+import URL from "../Rest/PropertyFacade"
 import React, {useState, useEffect} from "react";
 import '../App.css';
 //import URL from '../settings'
@@ -7,12 +7,13 @@ export default function Properties() {
   const[data, setData] = useState([])
 
     useEffect(() => {
-      fetch(PropertyFacade) //Spørg Jorg!
+      fetch(URL) //problemer med dette...
         .then((res) => res.json())
         .then((data) => setData(data))
         .catch((err) => console.log("Oh no"))
       console.log(data)
     }, [])
+
     
     return (
       <div className="container mt-3">

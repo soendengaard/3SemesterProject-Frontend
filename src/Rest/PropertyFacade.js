@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080//sem3backend/api/properties/"
+const URL = "https://realtor.p.rapidapi.com/properties/v2/list-for-sale"
 
 
 
@@ -10,7 +10,8 @@ function handleHttpErrors(res) {
 }
 
 function getAllProperties(){
-    return fetch(URL + "all") 
+    //console.log(fetch(URL))
+    return fetch(URL) 
     .then(handleHttpErrors)
 }
 
