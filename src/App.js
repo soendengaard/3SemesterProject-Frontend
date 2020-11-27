@@ -6,7 +6,6 @@ import Weather from "./Components/Weather";
 import Loginout from "./Components/Login-out";
 import Home from "./Components/Home";
 import NoMatch from "./Components/NoMatch";
-import KanyeRest from "./Components/KanyeRest";
 
 import React, {useState} from "react";
 import {
@@ -23,8 +22,6 @@ function Header({isLoggedIn, loginMsg}) {
       <ul className="header">
         <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
         <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
-        <li><NavLink activeClassName="active" to="/kanyerest">Kanye Rest</NavLink></li>
-
         {isLoggedIn && (
           <React.Fragment>
             <li><NavLink activeClassName="selected" to="/weather">Weather</NavLink></li>
@@ -61,9 +58,6 @@ function App() {
           </Route>
           <Route path="/properties">
             <Properties />
-          </Route>
-          <Route path="/kanyerest">
-            <KanyeRest />
           </Route>
           <Route path="/weather">
             <Weather isLoggedIn={isLoggedIn}/>

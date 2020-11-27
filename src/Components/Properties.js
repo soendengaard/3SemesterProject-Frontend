@@ -1,33 +1,40 @@
-import URL from "../settings";
+import PropertyFacade from "../Rest/PropertyFacade"
 import React, {useState, useEffect} from "react";
 import '../App.css';
+//import URL from '../settings'
 
 export default function Properties() {
   const[data, setData] = useState([])
-  
-  function getProperty() {
-    fetch(URL)
-        .then((res) => res.json())
-        .then((data) => setData(data))
-        .catch((err) => console.log("An error have occured."))
-  }
 
     useEffect(() => {
-      getProperty();
+      fetch(PropertyFacade) //Spørg Jorg!
+        .then((res) => res.json())
+        .then((data) => setData(data))
+        .catch((err) => console.log("Oh no"))
+      console.log(data)
     }, [])
-
+    
     return (
-      <div class="container mt-3">
-        <div class="row">
-          <div class="col-sm">
-          <h2>Search for properties</h2>
-          <p><b>Time: </b> {data.text}</p>
-          <p className="time">{data.time}</p>
+      <div className="container mt-3">
+        <div className="row">
+              <h2 className="col-7 text-center">All properties for sale : </h2>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Property id</th>
+                    <th scope="col">Addresse</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((data) => (
+                    <tr key={data.property_id}>
+                      <td>{data.address}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
           </div>
         </div>
-      </div>
-
     );
-
 
 }
