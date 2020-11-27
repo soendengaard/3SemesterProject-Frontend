@@ -1,41 +1,28 @@
-import URL from "../Rest/PropertyFacade"
+import propertyFacade from './propertyFacade'
 import React, {useState, useEffect} from "react";
 import '../App.css';
-//import URL from '../settings'
 
-export default function Properties() {
-  const[data, setData] = useState([])
 
-    useEffect(() => {
-      fetch(URL) //problemer med dette...
-        .then((res) => res.json())
-        .then((data) => setData(data))
-        .catch((err) => console.log("Oh no"))
-      console.log(data)
-    }, [])
+function Properties(data) {
+  const[propertyData, setPropertyData] = useState('Loading data from server...')
 
-    
+  useEffect(() => {
+    propertyFacade.fetchPropertyData()
+    .then(propertyData => setPropertyData(propertyData))
+  }, [])
+
+  
     return (
       <div className="container mt-3">
         <div className="row">
-              <h2 className="col-7 text-center">All properties for sale : </h2>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Property id</th>
-                    <th scope="col">Addresse</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((data) => (
-                    <tr key={data.property_id}>
-                      <td>{data.address}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="col-7">
+            <h2>All properties for sale :</h2>
+            <h3>{JSON.stringify(propertyData)}</h3>
           </div>
         </div>
+      </div>
     );
 
 }
+
+export default Properties;
