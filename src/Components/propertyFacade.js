@@ -13,7 +13,7 @@ function Properties () {
     
     const fetchPropertyData = () => {
         //const options = makeOptions("GET", true)
-        return fetch(URL + "api/properties/all")// options)
+        return fetch(URL + "api/properties/London")// options)
         .then(handleHttpErrors)
         .catch((err) => {
             if (err.status) {
