@@ -12,7 +12,6 @@ function Properties() {
     .then(propertyData => setPropertyData(propertyData.realtorDTO.properties)) 
   }, [])
 
-  console.log(typeof(propertyData))
 
     return (
       <div className="container mt-1">
@@ -22,29 +21,35 @@ function Properties() {
               <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">"Property ID</th>
+                  <th scope="col">Property ID</th>
                   <th scope="col">Address</th>
                   <th scope="col">City</th>
-                  <th scope="col">Street</th>
                   <th scope="col">Postal code</th>
                   <th scope="col">State code</th>
+                  <th scope="col">Price</th>
                 </tr>
               </thead>
-              <tbody>
-                    {propertyData (
-                      propertyData.map((m) => ( 
-                      <tr key={m.property_id}>
-                        <td>{m.propertyData}</td>
-                        </tr> 
-              ))
-                    
-                    )}
+              <tbody>{propertyData.map((m, key) => {
+                        return(
+                      <tr key={key}>
+                        <td>{m.property_id}</td>
+                        <td>{m.address.line}</td>
+                        <td>{m.address.city}</td>
+                        <td>{m.address.postal_code}</td>
+                        <td>{m.address.state_code}</td>
+                        <td>{m.price}</td>
+
+
+                    </tr>
+              )})
+                       }
+                  
               </tbody>
             </table>
           </div>
         </div>
       </div>
     );
-
+                      
 }
 export default Properties;
