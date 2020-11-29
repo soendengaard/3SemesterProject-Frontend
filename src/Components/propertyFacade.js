@@ -1,6 +1,5 @@
 import URL from '../settings'
 
-
 function handleHttpErrors(res) {
     if (!res.ok) {
         return Promise.reject({ status: res.status, fullError: res.json() })
@@ -8,25 +7,7 @@ function handleHttpErrors(res) {
     return res.json()
 }
 
-function Properties () {
-
-    
-    const fetchPropertyData = () => {
-        //const options = makeOptions("GET", true)
-        return fetch(URL + "api/properties/London")// options)
-        .then(handleHttpErrors)
-        .catch((err) => {
-            if (err.status) {
-                err.fullError.then((e) => console.log(e.message))
-            } else {
-                console.log("Oh no")
-            }
-        })
-    }
-    
-
-
-const makeOptions= (method, body) => {
+function makeOptions (method, body){
     var opts = {
         method: method,
         headers: {
@@ -40,11 +21,21 @@ const makeOptions= (method, body) => {
     return opts
     }
 
-    return {
-    makeOptions,
-    fetchPropertyData,
+function fetchPropertyData (){
+        //const options = makeOptions("GET", true)
+        return fetch(URL + "api/properties/New York")// options)
+        .then(handleHttpErrors)
+        .catch((err) => {
+            if (err.status) {
+                err.fullError.then((e) => console.log(e.message))
+            } else {
+                console.log("Oh no")
+            }
+        })
     }
+
+const propertyFacade = {
+    fetchPropertyData
 }
 
-const propertyFacade = Properties();
 export default propertyFacade;
