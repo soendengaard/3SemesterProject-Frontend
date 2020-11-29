@@ -9,10 +9,10 @@ function handleHttpErrors(res) {
 
 function makeOptions (method, body){
     var opts = {
-        method: method,
+        method: "GET",
         headers: {
             "Content-type": "application/json",
-            "Accept": "application/json",
+            Accept: "application/json",
         }
     }
     if (body) {
@@ -22,7 +22,6 @@ function makeOptions (method, body){
     }
 
 function fetchPropertyData (){
-        //const options = makeOptions("GET", true)
         return fetch(URL + "api/properties/New York")// options)
         .then(handleHttpErrors)
         .catch((err) => {
@@ -35,7 +34,8 @@ function fetchPropertyData (){
     }
 
 const propertyFacade = {
-    fetchPropertyData
+    fetchPropertyData,
+    makeOptions
 }
 
 export default propertyFacade;

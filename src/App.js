@@ -21,10 +21,11 @@ function Header({isLoggedIn, loginMsg}) {
     <div>
       <ul className="header">
         <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-        <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
+        <li><NavLink activeClassName="selected" to="/weather">Weather</NavLink></li>
+
         {isLoggedIn && (
           <React.Fragment>
-            <li><NavLink activeClassName="selected" to="/weather">Weather</NavLink></li>
+            <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
           </React.Fragment>
         )}
         <li><NavLink activeClassName="active" to="/login-out">{loginMsg}</NavLink></li>
@@ -57,10 +58,10 @@ function App() {
             <Home />
           </Route>
           <Route path="/properties">
-            <Properties />
+            <Properties isLoggedIn={isLoggedIn}/>
           </Route>
           <Route path="/weather">
-            <Weather isLoggedIn={isLoggedIn}/>
+            <Weather />
           </Route>
           <Route path="/login-out">
             <Loginout 

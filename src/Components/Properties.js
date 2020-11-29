@@ -1,9 +1,14 @@
 import propertyFacade from './propertyFacade'
 import React, {useState, useEffect} from "react";
 import '../App.css';
+import NoMatch from "./NoMatch";
+import {
+    BrowserRouter as Router,
+    Route
+  } from "react-router-dom";
 
 
-function Properties() {
+function Properties({isLoggedIn}) {
   const[propertyData, setPropertyData] = useState([])
   
 
@@ -12,11 +17,12 @@ function Properties() {
     .then(propertyData => setPropertyData(propertyData.realtorDTO.properties)) 
   }, [])
 
+  if (isLoggedIn === true) {
 
     return (
       <div className="container mt-1">
         <div className="row">
-            <div className="col-5 text-center">
+            <div className="col-40 text-center">
               <h2 className="text">Properties for sale in New York</h2>
               <table className="table">
               <thead>
@@ -50,6 +56,15 @@ function Properties() {
         </div>
       </div>
     );
-                      
+
+  } else {
+    return (
+        <Router>
+            <Route>
+                <NoMatch />
+            </Route>
+        </Router>
+    )
+}                      
 }
 export default Properties;
