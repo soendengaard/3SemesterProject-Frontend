@@ -1,9 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
-import Properties from "./Components/Properties";
 import SearchProperties from "./Components/SearchProperties";
-import Weather from "./Components/Weather";
 import Loginout from "./Components/Login-out";
 import Home from "./Components/Home";
 import NoMatch from "./Components/NoMatch";
@@ -22,8 +20,6 @@ function Header({isLoggedIn, loginMsg}) {
     <div>
       <ul className="header">
         <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-        <li><NavLink activeClassName="selected" to="/weather">Weather</NavLink></li>
-        <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
         <li><NavLink activeClassName="active" to="/searchProperties">Search properties</NavLink></li>
 
         {isLoggedIn && (
@@ -59,14 +55,9 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/properties">
-            <Properties />
-          </Route>
+
           <Route path="/searchProperties">
             <SearchProperties />
-          </Route>
-          <Route path="/weather">
-            <Weather />
           </Route>
           <Route path="/login-out">
             <Loginout 

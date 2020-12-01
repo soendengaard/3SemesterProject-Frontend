@@ -1,4 +1,4 @@
-import URL from "../settings";
+
  
 function handleHttpErrors(res) {
  if (!res.ok) {
@@ -9,7 +9,7 @@ function handleHttpErrors(res) {
  
 function Loginout() {
     /* Insert utility-methods from a latter step (d) here (REMEMBER to uncomment in the returned object when you do)*/
-    
+    const URL = "https://swes.me/3semprojectbackend/";
     const login = (user, password) => {
         const options = makeOptions("POST", true,{username: user, password: password });
         return fetch(URL + "/api/login", options)

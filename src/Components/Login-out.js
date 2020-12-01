@@ -1,6 +1,5 @@
-import { getElementError } from "@testing-library/react";
 import React, { useState,useEffect } from "react"
-import facadeLoginout from "./facadeLoginout";
+import facadeLoginout from "./Facade/facadeLoginout";
 
 function LogIn({ login }) {
   const init = { username: "", password: "" };
@@ -32,7 +31,7 @@ function LogIn({ login }) {
 }
 function LoggedIn() {
   const [dataFromServer, setDataFromServer] = useState("Loading...");
-
+  
   useEffect(() => {
     facadeLoginout.fetchUserData()
         .then(data=> setDataFromServer(data.msg))

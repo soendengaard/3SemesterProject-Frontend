@@ -1,59 +1,42 @@
-import React, {useState, useEffect} from "react";
+import URL from "../settings";
+import React, {useState} from "react";
 import '../App.css';
-import "bootstrap/dist/css/bootstrap.min.css"
-import URL from '../settings'
+import Property from "./Facade/propertyFacade";
 
-          
-export default function SearchByCity(){
-const [city, setCity] = useState([])
+export default function Properties() {
 
-function handleSubmit(event) {
-    event.preventDefault()
-    
-}
+    const [content, setContent] = useState([]);
+    const [city,setCity] = useState('');
 
-function fetchCityData (){
-    let options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        setContent(<Property URL={URL} city={city}/>);
+    }
+    function handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        setCity(value);
     }
 
-    let city = document.getElementsByName("SearchByCity").value
-    
 
-    fetch(URL+"api/properties/" + city, options)
-    .then((res) => res.json())
-    .then((data) => {
-        setCity(data.realtorDTO.properties)
-    })
-  }
-
-  useEffect(() => {
-    fetchCityData()
-}, []) 
-
-  return (
-    
-<form className="container mt-1">
+    return (
+        <div className="container mt-3">
             <div className="row">
-                <div className="col-40 text-center">
-                <h2 className="text">Search</h2>
-                <input
-                type="text"
-                id="name"
-                placeholder="Search for city"/>
-                <button 
-                type="submit"
-                onClick={fetchCityData}>Search</button>
+                <div className="col-6">
+                    <form className="mt-4" onSubmit={handleFormSubmit}>
+                        <input className="form-control" id="inputCity" 
+                            aria-describedby="cityHelp" placeholder="Enter City" onChange={handleChange}/>  
+                        <button type="submit" className="btn btn-success mt-2">Search Houses</button>
+                    </form>
+                </div>
+            </div> 
 
-
+            <div className="row">
+                <div className="col-12 mt-3">
+                    {content}
+                </div>    
+            </div>   
         </div>
-        <p>{city.city}</p>
-        
-    </div>
-</form>
-  )
+    )
+    
 }
