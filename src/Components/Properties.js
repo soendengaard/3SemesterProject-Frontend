@@ -1,29 +1,40 @@
-import propertyFacade from './propertyFacade'
 import React, {useState, useEffect} from "react";
 import '../App.css';
-import NoMatch from "./NoMatch";
-import {
-    BrowserRouter as Router,
-    Route
-  } from "react-router-dom";
+import URL from '../settings'
+import facade from './facadeLoginout'
+import "bootstrap/dist/css/bootstrap.min.css"
+import SearchByCity from '../Components/SearchProperties'
 
-
-function Properties({isLoggedIn}) {
+export default function Properties() {
   const[propertyData, setPropertyData] = useState([])
-  
+  const [city, setCity] = useState([])
+  const options = facade.makeOptions("GET", true)
 
-  useEffect(() => {
-    propertyFacade.fetchPropertyData()
-    .then(propertyData => setPropertyData(propertyData.realtorDTO.properties)) 
-  }, [])
+  function fetchPropertyData (){
+    let options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+    }
 
-  if (isLoggedIn === true) {
+    fetch(URL + "api/properties/London", options)
+    .then((res) => res.json())
+    .then((data) => {
+      setPropertyData(data.realtorDTO.properties)
+    })
+  }
+      
+    useEffect(() => {
+      fetchPropertyData()
+  }, []) 
 
     return (
       <div className="container mt-1">
         <div className="row">
             <div className="col-40 text-center">
-              <h2 className="text">Properties for sale in New York</h2>
+              <h2 className="text">Properties for sale</h2>
               <table className="table">
               <thead>
                 <tr>
@@ -32,6 +43,7 @@ function Properties({isLoggedIn}) {
                   <th scope="col">City</th>
                   <th scope="col">Postal code</th>
                   <th scope="col">State code</th>
+                  <th scope="col">State</th>
                   <th scope="col">Price</th>
                 </tr>
               </thead>
@@ -43,28 +55,28 @@ function Properties({isLoggedIn}) {
                         <td>{m.address.city}</td>
                         <td>{m.address.postal_code}</td>
                         <td>{m.address.state_code}</td>
+                        <td>{m.address.state}</td>
                         <td>{m.price}</td>
-
-
                     </tr>
-              )})
-                       }
-                  
+              
+
+               )})}
+
+            
+
+              
               </tbody>
+
+              
             </table>
+
+            
           </div>
         </div>
-      </div>
+      </div>  
     );
+    
 
-  } else {
-    return (
-        <Router>
-            <Route>
-                <NoMatch />
-            </Route>
-        </Router>
-    )
+  
+    
 }                      
-}
-export default Properties;

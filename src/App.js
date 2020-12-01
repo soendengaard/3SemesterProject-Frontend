@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 import Properties from "./Components/Properties";
+import SearchProperties from "./Components/SearchProperties";
 import Weather from "./Components/Weather";
 import Loginout from "./Components/Login-out";
 import Home from "./Components/Home";
@@ -22,10 +23,11 @@ function Header({isLoggedIn, loginMsg}) {
       <ul className="header">
         <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
         <li><NavLink activeClassName="selected" to="/weather">Weather</NavLink></li>
+        <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
+        <li><NavLink activeClassName="active" to="/searchProperties">Search properties</NavLink></li>
 
         {isLoggedIn && (
           <React.Fragment>
-            <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
           </React.Fragment>
         )}
         <li><NavLink activeClassName="active" to="/login-out">{loginMsg}</NavLink></li>
@@ -58,7 +60,10 @@ function App() {
             <Home />
           </Route>
           <Route path="/properties">
-            <Properties isLoggedIn={isLoggedIn}/>
+            <Properties />
+          </Route>
+          <Route path="/searchProperties">
+            <SearchProperties />
           </Route>
           <Route path="/weather">
             <Weather />
