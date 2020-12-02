@@ -20,6 +20,7 @@ export default function Properties() {
 
 
     return (
+
         <div className="container mt-3">
             <div className="row">
                 <div className="col-6">
@@ -30,12 +31,16 @@ export default function Properties() {
                     </form>
                 </div>
             </div> 
+            
 
             <div className="row">
                 <div className="col-12 mt-3">
+                  <div className="card-columns">
                     {content}
-                </div>    
+                  </div>    
+                </div>
             </div>   
+ 
         </div>
     )
     

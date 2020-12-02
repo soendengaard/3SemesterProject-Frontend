@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  width: 18rem;
+}
+
+.bold{
+  font-weight: bold;
+}
+.containerCityInfo{
+  background-color: gainsboro;
+}
+.pHeader{
+  text-align: center;
+}
