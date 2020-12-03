@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal, Carousel} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 import React, {useState, useEffect} from "react";
 import No_Image_Available from "./No.jpg";
 import '../../App.css';
@@ -13,9 +13,7 @@ export default function Property({URL, city}) {
     const [houses, setHouses] = useState([]);
     const [cityInfo, setCityInfo] = useState([]);
     const [photoRefsData, setPhotoRefsData] = useState([]);
-    const [test, setTest] = useState([]);
     let images = [];
-    let image = "";
 
     function fetchHouses(){
         fetch(urlHouses)
@@ -42,55 +40,12 @@ export default function Property({URL, city}) {
         fetchPhotoRefs();
     }, [city])
 
-    function EachPhoto(){
-        return (
-            <React.Fragment>
-                {photoRefsData.map((p) => {
-                    <div>
-                    <img className="d-block w-100" src={p + KEY} alt="Slide" />
-                    <img className="d-block w-100" src={No_Image_Available} alt="Slide" />
-                <Carousel>
-                        <Carousel.Item>
-                
-                    console.log("RAW: " + (p+KEY));
-                    image = <img className="d-block w-100" src={p + KEY} alt="Slide" />;
-                    console.log("IMAGE: " + image);
-                
-                </Carousel.Item>
-                </Carousel>
-                </div>
-                })}
-            </React.Fragment>
-        )
-    }
-
-    function Carousel(props){
-        return (
-            <React.Fragment>
-                <p>This is a carousel</p>
-                <p>{props.photoUrl}</p>
-                <p>This is the end of carousel</p>
-            </React.Fragment>
-        )
-        
-    }
-
     function Test(){
         for (var i = 0; i < photoRefsData.length; i++) {
             images.push(<img className="photoRef mb-2" src={photoRefsData[i] + KEY} alt={i} key={photoRefsData[i]}/>)
-            //console.log(images);
-            //console.log("Images: " + images);
         }    
 
         return images;
-        // Save whole carousel in carousel attribute
-        /*
-        for (var i = 0; i < photoRefsData.length; i++) {
-            image = <img className="photoRef" src={photoRefsData[i] + KEY} alt={i} />
-            //<Carousel photoUrl={photoRefsData[i] + KEY}/>
-            return image;
-        }
-        */
     }
 
     function ModalFunction(props) {
