@@ -1,9 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal} from "react-bootstrap";
+import { Button, Modal} from "react-bootstrap";
 import React, {useState, useEffect} from "react";
 import No_Image_Available from "./No.jpg";
 import '../../App.css';
 import KEY from '../../apikey.js';
+import Carousel from 'react-elastic-carousel';
+import Item from "../Item"
 
 export default function Property({URL, city}) {
 
@@ -13,7 +15,10 @@ export default function Property({URL, city}) {
     const [houses, setHouses] = useState([]);
     const [cityInfo, setCityInfo] = useState([]);
     const [photoRefsData, setPhotoRefsData] = useState([]);
-    let images = [];
+    let images = {
+        infinite: false,
+    }
+    
 
     function fetchHouses(){
         fetch(urlHouses)
@@ -42,12 +47,14 @@ export default function Property({URL, city}) {
 
     function Test(){
         for (var i = 0; i < photoRefsData.length; i++) {
-            images.push(<img className="photoRef mb-2" src={photoRefsData[i] + KEY} alt={i} key={photoRefsData[i]}/>)
-        }    
+           return <img className="photoRef mb-2" src={photoRefsData[i] + KEY}/>
+        //images.push(<img className="photoRef mb-2" src={photoRefsData[i] + KEY} alt={i} key={photoRefsData[i]}/>)
 
-        return images;
+       // }    
+
+        //return images;
     }
-
+    }
     function ModalFunction(props) {
 
         const singleHouse = props.eachHouse;
@@ -134,26 +141,39 @@ export default function Property({URL, city}) {
                         </div>
                     </div>
                 </div>
-
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 mt-3 pHeader"> 
-                            <p className="h5 mt-3 mb-2">Pictures of the city</p> 
-                            <Test />
-                        </div>
-                    </div>
-                </div>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                
+    <div className="carousel">
+        <div className="row">
+            <div className="col-12 mt-3 pHeader"> 
+                <p className="h5 mt-3 mb-2">Pictures of the city</p>
+        
+    
+              <Carousel images={images}>
+                  <Test />
+                  <Test />
+                  <Test />
+                  <Test />
+                  <Test />
+                  <Test />
+                  <Test />
+                  <Test />
+                  <Test />
+                  <Test />
+              </Carousel>
+              </div>
+              </div>
+              </div>
+              
+            </Modal.Body> 
+            <Modal.Footer> 
+              <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-              </Modal.Footer>
+            </Modal.Footer> 
             </Modal>
           </>
         );
-      }
-
+  }
 
     return (
         <React.Fragment>
