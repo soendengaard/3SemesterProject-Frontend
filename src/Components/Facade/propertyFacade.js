@@ -13,7 +13,7 @@ export default function Property({URL, city}) {
     const [houses, setHouses] = useState([]);
     const [cityInfo, setCityInfo] = useState([]);
     const [photoRefsData, setPhotoRefsData] = useState([]);
-    const [photoRef, setPhotoRef] = useState("");
+    const [test, setTest] = useState([]);
     let images = [];
     let image = "";
 
@@ -40,14 +40,15 @@ export default function Property({URL, city}) {
         fetchHouses();
         fetchCityInfo();
         fetchPhotoRefs();
-        //EachPhotoRef();
-        EachPhoto();
     }, [city])
 
     function EachPhoto(){
         return (
             <React.Fragment>
                 {photoRefsData.map((p) => {
+                    <div>
+                    <img className="d-block w-100" src={p + KEY} alt="Slide" />
+                    <img className="d-block w-100" src={No_Image_Available} alt="Slide" />
                 <Carousel>
                         <Carousel.Item>
                 
@@ -57,18 +58,40 @@ export default function Property({URL, city}) {
                 
                 </Carousel.Item>
                 </Carousel>
+                </div>
                 })}
             </React.Fragment>
         )
     }
 
-    function EachCarousel(){
+    function Carousel(props){
         return (
-                <EachPhoto />
+            <React.Fragment>
+                <p>This is a carousel</p>
+                <p>{props.photoUrl}</p>
+                <p>This is the end of carousel</p>
+            </React.Fragment>
         )
+        
     }
 
+    function Test(){
+        for (var i = 0; i < photoRefsData.length; i++) {
+            images.push(<img className="photoRef mb-2" src={photoRefsData[i] + KEY} alt={i} key={photoRefsData[i]}/>)
+            //console.log(images);
+            //console.log("Images: " + images);
+        }    
 
+        return images;
+        // Save whole carousel in carousel attribute
+        /*
+        for (var i = 0; i < photoRefsData.length; i++) {
+            image = <img className="photoRef" src={photoRefsData[i] + KEY} alt={i} />
+            //<Carousel photoUrl={photoRefsData[i] + KEY}/>
+            return image;
+        }
+        */
+    }
 
     function ModalFunction(props) {
 
@@ -90,7 +113,7 @@ export default function Property({URL, city}) {
 
         let size = "";
         let units = "";
-        if (singleHouse.hasOwnProperty('size')){
+        if (singleHouse.hasOwnProperty('building_size')){
             size = singleHouse.building_size.size;
             units = singleHouse.building_size.units;
         } else {
@@ -159,8 +182,9 @@ export default function Property({URL, city}) {
 
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 mt-3"> 
-                            <EachCarousel />
+                        <div className="col-12 mt-3 pHeader"> 
+                            <p className="h5 mt-3 mb-2">Pictures of the city</p> 
+                            <Test />
                         </div>
                     </div>
                 </div>
