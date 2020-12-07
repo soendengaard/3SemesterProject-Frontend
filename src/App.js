@@ -19,11 +19,11 @@ function Header({isLoggedIn, loginMsg}) {
   return (
     <div>
       <ul className="header">
-        <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-        <li><NavLink activeClassName="active" to="/searchProperties">Search properties</NavLink></li>
+        <li><NavLink exact activeClassName="active" to="/searchProperties">Search properties</NavLink></li>
 
         {isLoggedIn && (
           <React.Fragment>
+        <li><NavLink activeClassName="active" to="/home">Favorite List</NavLink></li>
           </React.Fragment>
         )}
         <li><NavLink activeClassName="active" to="/login-out">{loginMsg}</NavLink></li>
@@ -59,6 +59,7 @@ function App() {
           <Route path="/searchProperties">
             <SearchProperties />
           </Route>
+
           <Route path="/login-out">
             <Loginout 
               loginMsg={isLoggedIn ? "Logout" : "Login"}
