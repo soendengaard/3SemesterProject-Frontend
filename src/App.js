@@ -5,6 +5,7 @@ import SearchProperties from "./Components/SearchProperties";
 import Loginout from "./Components/Login-out";
 import Home from "./Components/Home";
 import NoMatch from "./Components/NoMatch";
+import FavoriteList from "./Components/FavoriteList";
 
 import React, {useState} from "react";
 import {
@@ -23,7 +24,7 @@ function Header({isLoggedIn, loginMsg}) {
 
         {isLoggedIn && (
           <React.Fragment>
-        <li><NavLink activeClassName="active" to="/home">Favorite List</NavLink></li>
+        <li><NavLink activeClassName="active" to="/favoritelist">Favorite List</NavLink></li>
           </React.Fragment>
         )}
         <li><NavLink activeClassName="active" to="/login-out">{loginMsg}</NavLink></li>
@@ -58,6 +59,10 @@ function App() {
 
           <Route path="/searchProperties">
             <SearchProperties />
+          </Route>
+          
+          <Route path="/favoritelist">
+            <FavoriteList />
           </Route>
 
           <Route path="/login-out">
