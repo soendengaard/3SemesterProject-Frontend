@@ -146,14 +146,17 @@ export default function FavoriteList() {
             <div className="row">
                 <div className="col-6">
                     <h2>Your Favorite Houses</h2>
-                    <button className="btn btn-primary mt-3 ml-3" type="submit" onClick={handleOnclickFetch}>
-                        Reload your favorites
-                    </button>
                 </div>
             </div>        
 
             <Cards/>
         </div>
+        <div className="reloadButton fixed-top ">
+            <button className="btn btn-primary " type="submit" onClick={handleOnclickFetch}>
+                Reload your favorites
+            </button>
+        </div>
+        
 
         </React.Fragment>
 

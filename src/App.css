@@ -53,3 +53,8 @@
 .carouselBackgroundColor{
   background-color: white;
 }
+
+.reloadButton {
+  margin-top: 25%;
+  margin-left: 86%;
+}
