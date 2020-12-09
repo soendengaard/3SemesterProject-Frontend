@@ -13,7 +13,7 @@ export default function Property({URL, city}) {
     const urlHouses = URL + '/api/properties/' + city;
     const urlCityInfo = URL + '/api/citydetails/' + city;
     const urlPhotoRefs = URL + '/api/photo/placeref/' + city;
-    const addFavoritesURL = URL + '/api/test';
+    const addFavoritesURL = URL + '/api/properties/saveprop';
     const [houses, setHouses] = useState([]);
     const [cityInfo, setCityInfo] = useState([]);
     const [photoRefsData, setPhotoRefsData] = useState([]);
