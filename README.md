@@ -39,7 +39,7 @@ Needs to be installed to run the application. It handles most of the styling wit
 
 ### `Backend`
 
-You find the backend startcode for the project here: https://github.com/MiaSimone/CA3-Backend.
+You find the backend startcode for the project here: https://github.com/MiaSimone/3SemesterProject-Backend.
 
 ### `The Project and the URL`
 
